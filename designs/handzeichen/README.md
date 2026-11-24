@@ -1,21 +1,20 @@
-# Handzeichen (High Five, Peace) – Monoline-Stil
+# Handzeichen (High Five, Peace) – Strichzeichnung auf Holz
 
-Zwei Lagen: schwarze Linienzeichnung (3 mm schwarzes Acryl/Holz oder dunkles PLA)
-auf einer Holzbasis, die die Linie rundum mit ca. 7 mm Holzrand einfasst.
-
-**Voraussetzung:** Python 3 + [shapely](https://pypi.org/project/Shapely/) (`pip install shapely`)
+Stil: eine schwarze Linie (Mittellinie mit 7 mm Strich, runde Enden) auf einer Holzbasis,
+die rundum 7 mm übersteht. Innenlinien laufen frei in der Handfläche aus.
 
 ```
-python3 generate.py <ausgabeordner>
+python3 linienzeichnung.py <ausgabeordner>
 ```
 
 | Datei | Inhalt |
 |---|---|
-| `<name>_vorschau.svg` | farbige Vorschau (Linie #1E1B19 auf Holz #D9B382) |
-| `<name>_linie.svg` | Schnittkontur der schwarzen Linienlage – **ein** zusammenhängendes Teil, rot = schneiden |
-| `<name>_basis.svg` | Schnittkontur der Holzbasis (rot) + Schlüsselloch-Position (blau gestrichelt, nur Markierung) |
-| `vorschau.png` | beide Zeichen nebeneinander (Playwright, deviceScaleFactor 2) |
+| `<name>_vorschau.svg` | farbige Vorschau |
+| `<name>_linie.svg` | schwarze Lage (3 mm schwarzes Acryl oder dunkles PLA) |
+| `<name>_basis.svg` | Holzbasis (3 mm Sperrholz) |
+| `vorschau.png` | beide Zeichen nebeneinander |
 
-Maße: Basis 125 mm hoch (High Five 112 mm, Peace 88 mm breit), Linie 7,5 mm,
-Holzlücken innerhalb der Linie überall ≥ 4 mm, Innenecken R ≥ 1,5 mm.
-Alle Maße stehen oben in `generate.py` (STROKE, BASE_MARGIN, MIN_GAP, TARGET_H).
+Maße in mm (viewBox = mm). Strich und Rand oben im Skript: `STROKE`, `RAND`.
+
+**Vor dem Lasern:** Die Linien sind als Strich (stroke) angelegt. In xTool Creative Space
+bzw. Inkscape einmal „Kontur in Pfad umwandeln“ und die Teile vereinigen, dann schneiden.
