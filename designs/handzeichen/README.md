@@ -16,6 +16,6 @@ python3 generate.py <ausgabeordner>
 | `<name>_basis.svg` | Schnittkontur der Holzbasis (rot) + Schlüsselloch-Position (blau gestrichelt, nur Markierung) |
 | `vorschau.png` | beide Zeichen nebeneinander (Playwright, deviceScaleFactor 2) |
 
-Maße: Basis 125 mm hoch (High Five 112 mm, Peace 104 mm breit), Linie 7,5 mm,
+Maße: Basis 125 mm hoch (High Five 112 mm, Peace 88 mm breit), Linie 7,5 mm,
 Holzlücken innerhalb der Linie überall ≥ 4 mm, Innenecken R ≥ 1,5 mm.
 Alle Maße stehen oben in `generate.py` (STROKE, BASE_MARGIN, MIN_GAP, TARGET_H).

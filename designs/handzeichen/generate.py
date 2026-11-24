@@ -102,21 +102,35 @@ def high_five():
     return parts, extra
 
 
+def ellipse(c, rx, ry, rot=0):
+    e = affinity.scale(Point(*c).buffer(1, RES), rx, ry)
+    return affinity.rotate(e, rot, origin=c)
+
+
 def peace():
-    palm = rrect(-30, 0, 32, 56, 21)
-    index = finger((-13, 8), -13, 47, 19, 18)
-    middle = finger((4, 8), 13, 47, 19, 18)
-    # V-Finger + Handfläche als eine Form; Schritt im V ausgerundet,
-    # damit zwischen den Strichen mind. 4 mm Holz bleiben.
-    hand = closing(unary_union([palm, index, middle]), 6.5)
-    # Ring- und kleiner Finger eingeklappt: zwei liegende Schlaufen, die
-    # Oberkante der oberen = Oberkante Handfläche, gemeinsame Mittelkante.
-    ring = capsule((13, 9), (31, 9), 18)
-    little = capsule((14, 28), (30, 28), 20)
-    # Daumen waagerecht über dem kleinen Finger, gleiche Ober-/Unterkante
-    # (keine spitzen Zwickel); die runde Daumenspitze liegt auf der Schlaufe.
-    thumb = capsule((-32, 28), (6, 28), 20)
-    parts = [(hand, "h"), (ring, "r"), (little, "l"), (thumb, "t")]
+    # Umriss: Handfläche, V-Finger und die Knöchel der eingeklappten Finger,
+    # die sich rechts aus der Hand wölben (oben größer); unten glatt rund.
+    palm = rrect(-30, 0, 30, 58, 25)
+    index = finger((-14, 4), -10, 43, 18.5, 18.5)
+    middle = finger((5, 4), 11, 43, 18.5, 18.5)
+    ring_k = Point(27, 14).buffer(10, RES)
+    little_k = Point(25, 28).buffer(8, RES)
+    sil = closing(unary_union([palm, index, middle, ring_k, little_k]), 6.5)
+    inside = sil.buffer(-0.3, RES)
+    # eingeklappte Finger als liegende Schlaufen (rechts offen in den Knöchel)
+    ring = capsule((3, 12), (40, 12), 16)
+    little = capsule((6, 28), (38, 28), 16)
+    # Daumen: kurzer, nach oben gebogener Strich vom linken unteren
+    # Handrand; runde Spitze liegt auf dem kleinen Finger. Unterkante nur
+    # kurz an der Spitze -> keine geschlossene Tasche unter dem Daumen.
+    axis = arc_through((-32, 49), (-16, 44), (0, 29))
+    thumb = axis.buffer(9.5, RES)
+    low = LineString(list(axis.coords)[:30])
+    lower = max((low.offset_curve(d) for d in (9.5, -9.5)), key=lambda c: c.centroid.y)
+    # auf den Umriss beschneiden: der Umriss selbst bleibt immer sichtbar
+    clip = lambda g: g.intersection(sil)
+    parts = [(sil, "h"), (clip(little), "l"), (clip(ring), "r"),
+             (clip(thumb), "t", lower.buffer(1.0, RES))]
     return parts, []
 
 
@@ -139,14 +153,16 @@ def arc_through(p0, p1, p2, n=40):
 # ------------------------------------------------------------ Geometrie-Bau
 def visible_lines(parts):
     out = []
-    for i, (poly, grp) in enumerate(parts):
+    for i, (poly, grp, *mask) in enumerate(parts):
         # verdeckt von: späteren Teilen + Teilen mit gemeinsamem Tag
         # (Tags = einzelne Kleinbuchstaben; gemeinsamer Tag = verschmolzen)
-        hide = [p for j, (p, g) in enumerate(parts)
+        # optional 3. Element: Maske, deren Kanten ausgeblendet werden
+        hide = [p for j, (p, g, *_) in enumerate(parts)
                 if j != i and (j > i or set(g) & set(grp))]
+        hide = [h.buffer(-0.01) for h in hide] + list(mask)
         line = poly.exterior
         if hide:
-            line = line.difference(unary_union(hide).buffer(-0.01))
+            line = line.difference(unary_union(hide))
         out += lines_of(line) if not isinstance(line, LineString) else [line]
     return out
 
@@ -188,7 +204,8 @@ def build_scaled(fn):
         def scaled():
             parts, extra = fn()
             sc = lambda g: affinity.scale(g, s, s, origin=(0, 0))
-            return [(sc(p), g) for p, g in parts], [sc(e) for e in extra]
+            return [(sc(p), *rest) if not rest[1:] else (sc(p), rest[0], sc(rest[1]))
+                    for p, *rest in parts], [sc(e) for e in extra]
         ink, base, filled = build(scaled)
         h = base.bounds[3] - base.bounds[1]
         s *= TARGET_H / h
