@@ -8,8 +8,9 @@ Aufruf: python3 generate.py <ausgabeordner>
 import sys
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else "."
-OUTLINE = "#3A3A35"
-HAND = "#CBC6B8"
+# Emoji-Look: warmes Gelb, Kontur in Honigbraun statt Schwarz
+OUTLINE = "#B86B12"
+HAND = "#FFC93C"
 
 
 def capsule(cx, base_y, length, width, angle):
@@ -20,36 +21,36 @@ def capsule(cx, base_y, length, width, angle):
 
 def high_five():
     shapes = [
-        '<rect x="44" y="78" width="62" height="70" rx="20"/>',  # Handfläche bis Handgelenk
-        capsule(52, 96, 62, 14, -10),     # Zeigefinger
-        capsule(67.5, 92, 70, 14.5, -3),  # Mittelfinger
-        capsule(83, 94, 64, 14, 4),       # Ringfinger
-        capsule(97, 104, 48, 13, 12),     # kleiner Finger
-        capsule(52, 118, 33, 16, -52),    # Daumen
+        '<rect x="42" y="76" width="66" height="72" rx="28"/>',  # Handfläche, rund
+        capsule(53, 98, 56, 17, -11),     # Zeigefinger
+        capsule(70, 94, 62, 17.5, -2),    # Mittelfinger
+        capsule(87, 96, 56, 17, 6),       # Ringfinger
+        capsule(101, 106, 42, 15.5, 15),  # kleiner Finger
+        capsule(52, 120, 32, 19, -55),    # Daumen
     ]
     return shapes, []
 
 
 def peace():
     shapes = [
-        '<rect x="46" y="86" width="58" height="64" rx="20"/>',  # Handfläche bis Handgelenk
-        capsule(62, 100, 70, 14.5, -16),  # Zeigefinger
-        capsule(82, 100, 72, 14.5, 14),   # Mittelfinger
-        '<rect x="78" y="88" width="30" height="15" rx="7.5"/>',  # Ringfinger eingeklappt
-        '<rect x="80" y="102" width="27" height="14" rx="7"/>',   # kleiner Finger eingeklappt
-        '<rect x="40" y="108" width="48" height="16" rx="8" transform="rotate(-12 64 116)"/>',  # Daumen
+        '<rect x="44" y="84" width="62" height="66" rx="26"/>',  # Handfläche, rund
+        capsule(63, 102, 62, 17.5, -17),  # Zeigefinger
+        capsule(84, 102, 64, 17.5, 15),   # Mittelfinger
+        '<rect x="78" y="88" width="32" height="17" rx="8.5"/>',  # Ringfinger eingeklappt
+        '<rect x="80" y="104" width="29" height="16" rx="8"/>',   # kleiner Finger eingeklappt
+        '<rect x="38" y="110" width="50" height="18" rx="9" transform="rotate(-12 63 119)"/>',  # Daumen
     ]
     # Nur die Trennlinien der eingeklappten Finger – ohne sie liest man das Peace-Zeichen nicht.
-    lines = ['<path d="M82,103 h22"/>', '<path d="M84,117 h20"/>']
+    lines = ['<path d="M83,105 h23"/>', '<path d="M85,120 h21"/>']
     return shapes, lines
 
 
 def hand_group(fn, dx=0, dy=0, fill=HAND):
     shapes, lines = fn()
     s = "".join(shapes)
-    out = f'<g fill="{OUTLINE}" stroke="{OUTLINE}" stroke-width="5" stroke-linejoin="round">{s}</g>'
+    out = f'<g fill="{OUTLINE}" stroke="{OUTLINE}" stroke-width="6" stroke-linejoin="round">{s}</g>'
     body = f'<g fill="{fill}">{s}</g>'
-    det = (f'<g fill="none" stroke="{OUTLINE}" stroke-width="1.6" stroke-linecap="round">{"".join(lines)}</g>'
+    det = (f'<g fill="none" stroke="{OUTLINE}" stroke-width="2.2" stroke-linecap="round">{"".join(lines)}</g>'
            if lines else "")
     return f'<g transform="translate({dx},{dy})">{out}{body}{det}</g>'
 
