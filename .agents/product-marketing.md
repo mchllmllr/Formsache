@@ -1,6 +1,6 @@
 # Product Marketing Context
 
-**Document version:** v2 (Entwurf)
+**Document version:** v3 (Entwurf)
 **Last updated:** 2026-11-24
 
 > Entwurf aus Shopdaten (Produkte, Filamentbestand), den Textregeln des Formsache-Shop-Werkzeugs und einer Marktrecherche vom 24.11.2026. Alles mit **[offen]** muss Michelle bestätigen oder ergänzen.
@@ -19,7 +19,7 @@
 | Moox Töpfe | passend zu den Lampenmustern | S 19,90 / M 24,90 / L 34,90 € | alle unveröffentlicht |
 | Weihnachten | Nussknacker, Rentier mit Schal, Rillen-Stern, Winterdorf-Kranz | 3,50–24,90 € | veröffentlicht |
 | Personalisiert | Bubble Letters mit Namen, Bubble-Letter-Magnete, Türschild für den Türrahmen | 4,90–14,90 € | veröffentlicht |
-| Handzeichen (in Entwicklung) | High Five, Peace: Holz-Hand, gestreifte Platte, Bogenrahmen aus Acryl; oder Hand einzeln | Ziel 39–59 € (Tafel), 19–29 € (Hand) | Entwurf, `designs/handzeichen/` |
+| Handzeichen (in Entwicklung) | High Five, Peace im Emoji-Stil: Holz-Hand auf dunkler, 4 mm größerer Rückenlage, Fingerdetails als Linien | Ziel 19–29 € einzeln, Set 45–55 € | Entwurf, `designs/handzeichen/` |
 
 **Farbwelt (Filamentbestand):** Bone White (Hauptfarbe), Dark Green, Dark Red, Charcoal/Anthrazit, Desert Tan, Ivory White, Schokobraun; kleinere Mengen Grass Green, Lilac, Scarlet Red. Alles Bambu PLA Matte.
 
@@ -69,7 +69,7 @@ B2C – keine Einkaufsgremien. Siehe Zielkundin und Geschenkekäufer*innen oben.
 | Objection | Response |
 |-----------|----------|
 | „Ist das nicht einfach Plastik?“ | Mattes PLA aus Pflanzenstärke, samtige Haptik – fühlt sich eher an wie Keramik als wie Kunststoff. (Wort „Plastik“ nie selbst verwenden.) |
-| „Wird die Lampe warm / ist das sicher?“ | **[offen: LED-Leuchtmittel, Fassung, CE/GPSR-Angaben]** |
+| „Wird die Lampe warm / ist das sicher?“ | Moox wird **ohne Elektrik** verkauft (Lampenschirm/Gehäuse). Empfehlung im Text: nur LED-Leuchtmittel verwenden. **[offen: passende Fassung/Leuchtmittel nennen]** |
 | „Kann ich Lampe und Topf passend bekommen?“ | Ja – jedes Moox-Muster gibt es als Lampe und Topf. |
 | „Wie lange dauert die Lieferung?“ | **[offen: Produktions- und Versandzeit]** |
 
@@ -130,9 +130,11 @@ B2C – keine Einkaufsgremien. Siehe Zielkundin und Geschenkekäufer*innen oben.
 | Date | Learning | Evidence | Applies to | Status |
 |------|----------|----------|------------|--------|
 | 2026-11-24 | Hand als Wandobjekt in 3D-Relief und deutsche, lockere Sprüche im verspielten UK-Stil sind auf Etsy kaum besetzt; „Peace“ allgemein ist sehr voll (ca. 61.500 Listings) | Marktrecherche per Agent (Suchtreffer, RankHero), keine Verkaufszahlen | Produktentwicklung, Etsy-Keywords | watch |
+| 2026-11-24 | Fluoreszierendes Acryl als Rahmen verworfen: mit dem Dioden-Laser des xTool M2 nur unsicher schneidbar (transparent/blau/grün gar nicht), Kantenleuchten geht verloren, passt optisch nicht zur Holz-Pastell-Linie | Produkt-Agent, Hersteller-FAQ + Forenberichte | Handzeichen, Material | active |
 | 2026-11-24 | Etsy erlaubt 3D-Druck/Laser nur mit eigenem Design (seit 10.06.2025); eigene CAD-Dateien als Nachweis aufbewahren | Etsy-Regeländerung, mehrere Quellen | alle Produkte | active |
 
 ## Changelog
 *Newest first. One line per revision: what changed and why.*
+- v3 (2026-11-24) — Moox ohne Elektrik festgehalten (kein ElektroG/CE-Elektro nötig); Handzeichen auf zweilagigen Emoji-Stil umgestellt, Acrylrahmen verworfen.
 - v2 (2026-11-24) — Kanäle festgelegt (Etsy Verkauf, Pinterest Marketing, Amazon Handmade später); Handzeichen-Linie ins Sortiment aufgenommen.
 - v1 (2026-11-24) — Initial context (Entwurf aus Shopdaten, Werkzeug-Textregeln und Marktrecherche).
