@@ -1,6 +1,6 @@
 # Product Marketing Context
 
-**Document version:** v1 (Entwurf)
+**Document version:** v2 (Entwurf)
 **Last updated:** 2026-11-24
 
 > Entwurf aus Shopdaten (Produkte, Filamentbestand), den Textregeln des Formsache-Shop-Werkzeugs und einer Marktrecherche vom 24.11.2026. Alles mit **[offen]** muss Michelle bestätigen oder ergänzen.
@@ -9,7 +9,7 @@
 **One-liner:** Formsache macht 3D-gedruckte Wohnaccessoires und personalisierte Kleinigkeiten aus mattem PLA mit samtiger Haptik – entworfen und gedruckt in kleiner Serie. **[offen: Ort/Region, „von Hand nachbearbeitet“?]**
 **What it does:** Formsache verkauft Lampen, Pflanztöpfe, saisonale Deko und personalisierte Artikel (Namen, Türschilder, Magnete). Jedes Stück wird auf Bestellung oder in kleiner Charge gedruckt, in gedeckten, wohnlichen Farbtönen.
 **Product category:** Wohnaccessoires / Deko / personalisierte Geschenke (Suche: „Lampe 3D-Druck“, „Rillen-Lampe“, „Namensschild Kinderzimmer“, „Weihnachtsdeko modern“).
-**Product type:** E-Commerce, eigener Onlineshop (Formsache-Shop). **[offen: zusätzlich Etsy, Märkte, Instagram-Shop?]**
+**Product type:** E-Commerce. **Verkauf: Etsy** (Hauptkanal, DACH/EU). **Marketing: Pinterest.** Eigener Formsache-Shop besteht zusätzlich. Amazon Handmade frühestens Q1 2027 als Ergänzung.
 **Business model:** Direktverkauf, Einzelpreise mit Größen-/Farbvarianten, Sets/Duos als Bündel.
 
 **Sortiment (Stand 24.11.2026):**
@@ -19,6 +19,7 @@
 | Moox Töpfe | passend zu den Lampenmustern | S 19,90 / M 24,90 / L 34,90 € | alle unveröffentlicht |
 | Weihnachten | Nussknacker, Rentier mit Schal, Rillen-Stern, Winterdorf-Kranz | 3,50–24,90 € | veröffentlicht |
 | Personalisiert | Bubble Letters mit Namen, Bubble-Letter-Magnete, Türschild für den Türrahmen | 4,90–14,90 € | veröffentlicht |
+| Handzeichen (in Entwicklung) | High Five, Peace: Holz-Hand, gestreifte Platte, Bogenrahmen aus Acryl; oder Hand einzeln | Ziel 39–59 € (Tafel), 19–29 € (Hand) | Entwurf, `designs/handzeichen/` |
 
 **Farbwelt (Filamentbestand):** Bone White (Hauptfarbe), Dark Green, Dark Red, Charcoal/Anthrazit, Desert Tan, Ivory White, Schokobraun; kleinere Mengen Grass Green, Lilac, Scarlet Red. Alles Bambu PLA Matte.
 
@@ -128,8 +129,10 @@ B2C – keine Einkaufsgremien. Siehe Zielkundin und Geschenkekäufer*innen oben.
 *Decisions and tested lessons. Newest first. Keep it to about 20 active entries.*
 | Date | Learning | Evidence | Applies to | Status |
 |------|----------|----------|------------|--------|
-| | | | | |
+| 2026-11-24 | Hand als Wandobjekt in 3D-Relief und deutsche, lockere Sprüche im verspielten UK-Stil sind auf Etsy kaum besetzt; „Peace“ allgemein ist sehr voll (ca. 61.500 Listings) | Marktrecherche per Agent (Suchtreffer, RankHero), keine Verkaufszahlen | Produktentwicklung, Etsy-Keywords | watch |
+| 2026-11-24 | Etsy erlaubt 3D-Druck/Laser nur mit eigenem Design (seit 10.06.2025); eigene CAD-Dateien als Nachweis aufbewahren | Etsy-Regeländerung, mehrere Quellen | alle Produkte | active |
 
 ## Changelog
 *Newest first. One line per revision: what changed and why.*
+- v2 (2026-11-24) — Kanäle festgelegt (Etsy Verkauf, Pinterest Marketing, Amazon Handmade später); Handzeichen-Linie ins Sortiment aufgenommen.
 - v1 (2026-11-24) — Initial context (Entwurf aus Shopdaten, Werkzeug-Textregeln und Marktrecherche).
