@@ -1,7 +1,7 @@
 # Handzeichen (High Five, Peace) – Strichzeichnung auf Holz
 
-Stil: eine schwarze Linie (Mittellinie mit 7 mm Strich, runde Enden) auf einer Holzbasis,
-die rundum 7 mm übersteht. Innenlinien laufen frei in der Handfläche aus.
+Stil: eine schwarze Linie (Mittellinie mit 5 mm Strich, runde Enden) auf einer Holzbasis,
+die rundum 6,5 mm übersteht. Innenlinien laufen frei in der Handfläche aus.
 
 ```
 python3 linienzeichnung.py <ausgabeordner>

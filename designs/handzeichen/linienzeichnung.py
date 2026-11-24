@@ -9,8 +9,8 @@ Aufruf: python3 linienzeichnung.py <ausgabeordner>
 import sys
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else "."
-STROKE = 7.0   # mm, schwarze Linie
-RAND = 7.0     # mm, Holzrand um die Linie
+STROKE = 5.0   # mm, schwarze Linie (schlank, ca. 4 % der Handbreite)
+RAND = 6.5     # mm, Holzrand um die Linie
 WOOD = "#D9B382"
 INK = "#1E1B19"
 
@@ -22,43 +22,45 @@ def u_finger(x0, x1, top, bottom):
 
 
 HIGH_FIVE = {
-    "size": (124, 150),
-    # Silhouette (für die Füllung der Basis)
+    "size": (100, 176),
     "fill": [
-        u_finger(28, 48, 34, 70), u_finger(48, 68, 22, 70), u_finger(68, 88, 30, 70), u_finger(88, 105, 48, 74),
-        "M28,66 L28,86 Q18,88 12,95 A8,8 0 0 0 22,109 L32,113 Q36,136 60,136 L82,136 Q105,136 105,112 L105,70 Z",
+        "M26,100 L26,34 A8.5,8.5 0 0 1 43,34 L43,22 A8.5,8.5 0 0 1 60,22 L60,30 A8.5,8.5 0 0 1 77,30 "
+        "L77,52 A8,8 0 0 1 93,52 L93,128 C93,156 82,170 62,170 L50,170 C34,170 30,158 28,146 "
+        "C16,136 2,110 4,96 C6,84 18,88 26,104 Z",
     ],
     "lines": [
-        # Finger als U-Bögen; benachbarte Finger teilen sich die Kante -> Trennlinie endet frei
-        "M28,86 L28,34 A10,10 0 0 1 48,34 L48,72",           # Zeigefinger (außen lang, innen kurz)
-        u_finger(48, 68, 22, 72), u_finger(68, 88, 30, 72),
-        "M88,72 L88,48 A8.5,8.5 0 0 1 105,48 L105,112",       # kleiner Finger (außen lang)
-        # Daumen (runde Kuppe) + Boden
-        "M28,86 Q18,88 12,95 A8,8 0 0 0 22,109 L32,113 Q36,136 60,136 L82,136 Q105,136 105,112",
-        # Daumenfalte, läuft frei aus
-        "M32,113 Q44,108 45,96",
+        # Finger: lang und schlank; Trennlinien enden frei am Handflächenansatz
+        "M26,108 L26,34 A8.5,8.5 0 0 1 43,34 L43,92",
+        "M43,40 L43,22 A8.5,8.5 0 0 1 60,22 L60,92",
+        "M60,40 L60,30 A8.5,8.5 0 0 1 77,30 L77,92",
+        "M77,60 L77,52 A8,8 0 0 1 93,52 L93,128",
+        # rechte Seite, Boden, Daumen als fließende Kurve
+        "M93,128 C93,156 82,170 62,170 L50,170 C34,170 30,158 28,146 "
+        "C16,136 2,110 4,96 C6,84 18,88 26,104",
+        # Daumenfalte, schwingt frei aus
+        "M28,146 C38,138 41,126 37,114",
     ],
 }
 
 PEACE = {
-    "size": (112, 150),
+    "size": (100, 176),
     "fill": [
-        f'<g transform="rotate(-8 28 74)"><path d="{u_finger(18, 38, 26, 74)}"/></g>',
-        f'<g transform="rotate(8 64 74)"><path d="{u_finger(54, 74, 26, 74)}"/></g>',
-        "M18,72 L18,112 Q18,136 44,136 L62,136 Q86,136 86,112 L86,70 L18,70 Z",
+        f'<g transform="rotate(-7 30 96)"><path d="M21,96 L21,22 A9,9 0 0 1 39,22 L39,96 Z"/></g>',
+        f'<g transform="rotate(7 62 96)"><path d="M53,96 L53,22 A9,9 0 0 1 71,22 L71,96 Z"/></g>',
+        "M21,92 L86,92 L86,140 C86,160 76,170 56,170 L46,170 C26,170 21,156 21,140 Z",
     ],
     "lines": [
-        # Zeige- und Mittelfinger, leicht gespreizt
-        f'<g transform="rotate(-8 28 74)"><path d="{u_finger(18, 38, 26, 74)}"/></g>',
-        f'<g transform="rotate(8 64 74)"><path d="{u_finger(54, 74, 26, 74)}"/></g>',
-        # linke Handkante (schließt an den Zeigefinger an) + Boden + rechte Seite
-        "M18.1,75.4 L18,112 Q18,136 44,136 L62,136 Q84,136 84,118 Q84,108 76,106",
-        # eingeklappter Ringfinger als Schlaufe
-        "M58,76 L74,76 A8,8 0 0 1 74,92 L52,92 A8,8 0 0 1 52,76 L58,76",
-        # eingeklappter kleiner Finger darunter, läuft frei nach links aus
-        "M74,92 A7,7 0 0 1 76,106 L62,106",
-        # Daumen: von der linken Kante schräg hoch, endet rund
-        "M18,114 Q33,111 46,102",
+        # Zeige- und Mittelfinger, lang, leicht gespreizt
+        '<g transform="rotate(-7 30 96)"><path d="M21,104 L21,22 A9,9 0 0 1 39,22 L39,96"/></g>',
+        '<g transform="rotate(7 62 96)"><path d="M53,96 L53,22 A9,9 0 0 1 71,22 L71,99"/></g>',
+        # eingerollter Ringfinger: Schlaufe nach links
+        "M71,99 L82,99 C90,99 90,115 82,115 L62,115 C53,115 53,99 62,99 L71,99",
+        # eingerollter kleiner Finger darunter
+        "M82,115 C90,115 89,131 80,131 L66,131",
+        # Handkante links, Boden, rechte Seite bis unter den kleinen Finger
+        "M22,104 L21,140 C21,156 26,170 46,170 L56,170 C76,170 86,160 86,142 C86,136 84,132 80,131",
+        # Daumen: fließende Kurve von links, endet vor den eingerollten Fingern
+        "M21,140 C30,138 40,132 46,122",
     ],
 }
 
