@@ -1,0 +1,61 @@
+{
+  "version": 2,
+  "skills": {
+    "cad": {
+      "source": "earthtojake/text-to-cad",
+      "commit": "a35df3f4ab8abe86d370fbffb631277a4e170e7b",
+      "sourceType": "github",
+      "skillPath": "skills/cad/SKILL.md",
+      "computedHash": "04c03b23a37cddb0b4f31d3c0147c689db74316af5c154b76b52943cc22ed87a"
+    },
+    "competitor-profiling": {
+      "source": "coreyhaines31/marketingskills",
+      "commit": "8fd2fcade2fd6629026e9dfe6d133b55b36968b9",
+      "sourceType": "github",
+      "skillPath": "skills/competitor-profiling/SKILL.md",
+      "computedHash": "76efcbc21f1aedb9003897638bba2adf265c05415e57444078c57a7a1021f3c2"
+    },
+    "marketing-ideas": {
+      "source": "coreyhaines31/marketingskills",
+      "commit": "8fd2fcade2fd6629026e9dfe6d133b55b36968b9",
+      "sourceType": "github",
+      "skillPath": "skills/marketing-ideas/SKILL.md",
+      "computedHash": "98eaa42d604e487b9b39d8dd894bba95fb86d53154f5481f797ca23b8600d336"
+    },
+    "openscad": {
+      "source": "mitsuhiko/agent-stuff",
+      "commit": "0865c849befd2021490679f96a8dee58c84ac857",
+      "sourceType": "github",
+      "skillPath": "skills/openscad/SKILL.md",
+      "computedHash": "ce2e89953e40a143fa5464c090e30d7a17b29b4fa91b3ab7b66be4619e95cd07"
+    },
+    "pricing": {
+      "source": "coreyhaines31/marketingskills",
+      "commit": "8fd2fcade2fd6629026e9dfe6d133b55b36968b9",
+      "sourceType": "github",
+      "skillPath": "skills/pricing/SKILL.md",
+      "computedHash": "9bea1819645df0b2d95429ecb64745ef5d2940b0bb161a40131eae3db8222813"
+    },
+    "print3d": {
+      "source": "earthtojake/text-to-cad",
+      "commit": "a35df3f4ab8abe86d370fbffb631277a4e170e7b",
+      "sourceType": "github",
+      "skillPath": "skills/print3d/SKILL.md",
+      "computedHash": "722101f545ab7e2b70162141f6ddd91d16f2465f5c62513858ee708e1c56e6f5"
+    },
+    "product-brainstorming": {
+      "source": "anthropics/knowledge-work-plugins",
+      "commit": "5e504ae11498f2b8daa30d86b7dab97b2ecd8092",
+      "sourceType": "github",
+      "skillPath": "product-management/skills/product-brainstorming/SKILL.md",
+      "computedHash": "df85d15cad06b5755e7bd9c77e57ff215c62047d0fcb160ac7fcc2d169eb3407"
+    },
+    "product-marketing": {
+      "source": "coreyhaines31/marketingskills",
+      "commit": "8fd2fcade2fd6629026e9dfe6d133b55b36968b9",
+      "sourceType": "github",
+      "skillPath": "skills/product-marketing/SKILL.md",
+      "computedHash": "2b7f80ab415280e3e0a0bcc112af8e24059169642c70fb36e18e44a79f80f505"
+    }
+  }
+}
