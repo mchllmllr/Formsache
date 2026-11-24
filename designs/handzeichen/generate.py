@@ -1,6 +1,6 @@
 """Erzeugt die Handzeichen-Entwürfe als SVG (Einheiten: mm).
 
-Variante A: Holzplatte mit gedruckten Streifen (xTool) + Hand (Bambu)
+Variante A: Acrylrahmen mit Bogenkante + Holzplatte mit gedruckten Streifen (xTool) + Holz-Hand
 Variante B: nur die Hand (Bambu)
 
 Aufruf: python3 generate.py <ausgabeordner>
@@ -8,9 +8,9 @@ Aufruf: python3 generate.py <ausgabeordner>
 import sys
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else "."
-# Emoji-Look: warmes Gelb, Kontur in Honigbraun statt Schwarz
-OUTLINE = "#B86B12"
-HAND = "#FFC93C"
+# Holz-Look: Hand in Holzton, dunkle Kontur (beim Lasern: Gravur bzw. beim Druck: dunkle Konturebene)
+OUTLINE = "#4A3424"
+HAND = "#D9B382"
 
 
 def capsule(cx, base_y, length, width, angle):
@@ -67,13 +67,36 @@ def svg(title, w, h, inner):
             f'<title>{title}</title>{inner}</svg>')
 
 
-# Variante A: Tafel 150 x 200 mm, Streifen gedruckt; Hand mittig
-BOARD_W, BOARD_H = 150, 200
+def scallop_frame(w, h, band, r_target, color):
+    """Rahmen mit Bogenkante außen und abgerundetem Innenausschnitt (Acryl, xTool)."""
+    nx = max(2, round((w - 2 * r_target) / (2 * r_target)))
+    ny = max(2, round((h - 2 * r_target) / (2 * r_target)))
+    x0, y0, iw, ih = r_target, r_target, w - 2 * r_target, h - 2 * r_target
+    rx, ry = iw / (2 * nx), ih / (2 * ny)
+    d = [f"M{x0:.2f},{y0:.2f}"]
+    d += [f"A{rx:.2f},{rx:.2f} 0 0 1 {x0 + (i + 1) * 2 * rx:.2f},{y0:.2f}" for i in range(nx)]
+    d += [f"A{ry:.2f},{ry:.2f} 0 0 1 {x0 + iw:.2f},{y0 + (i + 1) * 2 * ry:.2f}" for i in range(ny)]
+    d += [f"A{rx:.2f},{rx:.2f} 0 0 1 {x0 + iw - (i + 1) * 2 * rx:.2f},{y0 + ih:.2f}" for i in range(nx)]
+    d += [f"A{ry:.2f},{ry:.2f} 0 0 1 {x0:.2f},{y0 + ih - (i + 1) * 2 * ry:.2f}" for i in range(ny)]
+    outer = " ".join(d) + " Z"
+    b = band + r_target
+    inner = (f"M{b + 6},{b} H{w - b - 6} A6,6 0 0 1 {w - b},{b + 6} V{h - b - 6} "
+             f"A6,6 0 0 1 {w - b - 6},{h - b} H{b + 6} A6,6 0 0 1 {b},{h - b - 6} V{b + 6} A6,6 0 0 1 {b + 6},{b} Z")
+    return f'<path d="{outer} {inner}" fill="{color}" fill-rule="evenodd"/>'
+
+
+def plaque(title, hand_fn, hy, stripe, frame_color):
+    W, H, R, BAND = 170, 220, 10, 11
+    off = R + BAND - 3   # Innenplatte liegt 3 mm unter dem Rahmen
+    pw, ph = W - 2 * off, H - 2 * off
+    panel = f'<g transform="translate({off},{off})">{stripes_board(pw, ph, "#EFE6D2", stripe, n=5, r=6)}</g>'
+    return svg(title, W, H, panel + hand_group(hand_fn, 10, hy) + scallop_frame(W, H, BAND, R, frame_color))
+
+
+# Variante A: Tafel 170 x 220 mm inkl. Acrylrahmen, Streifen gedruckt, Holz-Hand
 variants = {
-    "A_high-five_tafel": svg("High Five auf Streifentafel", BOARD_W, BOARD_H,
-                             stripes_board(BOARD_W, BOARD_H, "#E8DBB7", "#68724D") + hand_group(high_five, 0, 10)),
-    "A_peace_tafel": svg("Peace auf Streifentafel", BOARD_W, BOARD_H,
-                         stripes_board(BOARD_W, BOARD_H, "#E8DBB7", "#BB3D43") + hand_group(peace, 0, 5)),
+    "A_high-five_tafel": plaque("High Five – Tafel mit Rahmen", high_five, 18, "#C9D3B4", "#FF6FA8"),
+    "A_peace_tafel": plaque("Peace – Tafel mit Rahmen", peace, 14, "#F3C6C0", "#FF9A3C"),
     # Variante B: nur die Hand
     "B_high-five_hand": svg("High Five – Hand", 150, 160, hand_group(high_five, 0, 0)),
     "B_peace_hand": svg("Peace – Hand", 150, 160, hand_group(peace, 0, -2)),
